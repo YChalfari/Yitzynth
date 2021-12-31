@@ -5,7 +5,7 @@ const Keyboard = ({ synth, notesToRender }) => {
   const noteWidth = 100 / notesToRender.length;
   const renderKeys = () => {
     return notesToRender.map((note, i) => (
-      <>
+      <React.Fragment key={note.note + note.octave}>
         <div
           className="white-note"
           onClick={() => {
@@ -33,7 +33,7 @@ const Keyboard = ({ synth, notesToRender }) => {
             </div>
           )}
         </div>
-      </>
+      </React.Fragment>
     ));
   };
 
