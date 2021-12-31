@@ -44,8 +44,9 @@ const Synth = () => {
 
   const handleKeyDown = (key) => {
     const noteObj = all.filter((note) => note.key === key.toLowerCase())[0];
-    console.log(noteObj.note, noteObj.octave);
+
     if (noteObj.key === key.toLowerCase()) {
+      console.log(noteObj.note, noteObj.octave);
       synth.triggerAttackRelease(
         `${noteObj.note}${noteObj.octave}`,
         `${noteObj.timing}n`

@@ -60,13 +60,16 @@ export const notesPlusSharps = (noteArr, keyArr) => {
   const notes = [];
   noteArr.forEach((note, i) => {
     notes.push(note);
-    notes[i].key = keyArr[i];
+    // notes[i].key = keyArr[i];
     note.hasSharp &&
       notes.push({
         note: note.note + "#",
         octave: note.octave,
         timing: note.timing,
       });
+  });
+  notes.forEach((note, i) => {
+    note.key = keyArr[i];
   });
   notes.splice(-1);
   return notes;
