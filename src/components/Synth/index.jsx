@@ -7,21 +7,21 @@ import {
 } from "../../resources/Notes";
 import Keyboard from "../Keyboard";
 const Synth = () => {
-  const [notesToRender, setNotesToRender] = useState(defaultNotesToRender);
+  // const [notesToRender, setNotesToRender] = useState(defaultNotesToRender);
   const [recordedArr, setRecordedArr] = useState([]);
   const [isRecording, setisRecording] = useState(false);
-  const notesWithKeyCode = useRef([]);
+  // const notesWithKeyCode = useRef([]);
   const recording = useRef(isRecording);
   const recorded = useRef([]);
   const synth = new Tone.PolySynth().toDestination();
-  const all = notesPlusSharps(notesToRender, keyCodes);
+  const all = notesPlusSharps(defaultNotesToRender, keyCodes);
   console.log(all, keyCodes);
   let currInterval = 0;
 
   useEffect(() => {
     window.addEventListener("keydown", (e) => handleKeyDown(e));
   }, []);
-  const setNotesWithKeyCode = () => {};
+
   const startCurrInt = () =>
     setInterval(() => {
       currInterval += 0.05;
@@ -71,7 +71,7 @@ const Synth = () => {
   };
   return (
     <div className="synth">
-      <Keyboard notesToRender={notesToRender} synth={synth} />
+      <Keyboard notesToRender={defaultNotesToRender} synth={synth} />
       <div className="record-buttons">
         <button
           onClick={() => {
