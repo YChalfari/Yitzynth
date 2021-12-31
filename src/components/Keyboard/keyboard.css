@@ -3,6 +3,7 @@
   margin: 0 auto;
   height: 20vh;
   width: 90vw;
+  border: 20px solid rgb(230, 48, 48);
 }
 .white-note {
   display: flex;
