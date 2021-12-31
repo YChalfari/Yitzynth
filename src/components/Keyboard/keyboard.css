@@ -10,7 +10,7 @@
   justify-content: center;
   position: relative;
   height: 100%;
-  border: 1px solid black;
+  border: 1px solid #333;
 }
 .black-note {
   display: flex;
