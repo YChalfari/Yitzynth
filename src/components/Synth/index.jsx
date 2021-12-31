@@ -16,16 +16,40 @@ const Synth = () => {
   const synth = new Tone.PolySynth().toDestination();
   const all = notesPlusSharps(defaultNotesToRender, keyCodes);
   console.log(all, keyCodes);
-  let currInterval = 0;
+  const currInterval = useRef([0]);
+  const startCurrInt = () =>
+    setInterval(() => {
+      currInterval.current += 0.05;
+    }, 50);
 
   useEffect(() => {
     window.addEventListener("keydown", (e) => handleKeyDown(e));
+    return window.removeEventListener("keydown");
   }, []);
 
-  const startCurrInt = () =>
-    setInterval(() => {
-      currInterval += 0.05;
-    }, 50);
+  const handleKeyDown = (e) => {
+    const key = e.key;
+    if (e.repeat) {
+      return;
+    }
+    const noteObj = all.filter((note) => note.key === key.toLowerCase())[0];
+    if (noteObj.key === key.toLowerCase()) {
+      console.log(noteObj.note, noteObj.octave);
+      synth.triggerAttackRelease(
+        `${noteObj.note}${noteObj.octave}`,
+        `${noteObj.timing}n`
+      );
+      if (recording.current) {
+        noteObj.interval = currInterval.current;
+        recorded.current.push(noteObj);
+        setRecordedArr(recorded.current);
+        // console.log(recorded.current, recording);
+        clearInterval(startCurrInt);
+        currInterval.current = 0;
+        startCurrInt();
+      }
+    }
+  };
 
   const handlePlayRecording = (arr) => {
     const now = Tone.now();
@@ -46,29 +70,6 @@ const Synth = () => {
     });
   };
 
-  const handleKeyDown = (e) => {
-    const key = e.key;
-    if (e.repeat) {
-      return;
-    }
-    const noteObj = all.filter((note) => note.key === key.toLowerCase())[0];
-    if (noteObj.key === key.toLowerCase()) {
-      console.log(noteObj.note, noteObj.octave);
-      synth.triggerAttackRelease(
-        `${noteObj.note}${noteObj.octave}`,
-        `${noteObj.timing}n`
-      );
-      if (recording.current) {
-        noteObj.interval = currInterval;
-        recorded.current.push(noteObj);
-        setRecordedArr(recorded.current);
-        // console.log(recorded.current, recording);
-        clearInterval(startCurrInt);
-        currInterval = 0;
-        startCurrInt();
-      }
-    }
-  };
   return (
     <div className="synth">
       <Keyboard notesToRender={defaultNotesToRender} synth={synth} />
@@ -77,8 +78,8 @@ const Synth = () => {
           onClick={() => {
             if (recording.current) {
               clearInterval(startCurrInt);
-              console.log(currInterval);
-              currInterval = 0;
+              console.log(currInterval.current);
+              currInterval.current = 0;
             }
 
             setisRecording(!isRecording);
