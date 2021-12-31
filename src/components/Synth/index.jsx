@@ -19,7 +19,7 @@ const Synth = () => {
   let currInterval = 0;
 
   useEffect(() => {
-    window.addEventListener("keydown", (e) => handleKeyDown(e.key));
+    window.addEventListener("keydown", (e) => handleKeyDown(e));
   }, []);
   const setNotesWithKeyCode = () => {};
   const startCurrInt = () =>
@@ -36,17 +36,21 @@ const Synth = () => {
       int = interval;
       console.log(int, recorded.current);
       // setTimeout(() => {
-      //   synth.triggerAttackRelease(`${note}`, "4n");
-      // }, `${int}`);
+      //   synth.triggerAttackRelease(`${note}${octave}`, `${timing}n`);
+      // }, `${now + int}`);
       synth.triggerAttackRelease(
         `${note}${octave}`,
         `${timing}n`,
-        `${now + int}`
+        `${now + interval}`
       );
     });
   };
 
-  const handleKeyDown = (key) => {
+  const handleKeyDown = (e) => {
+    const key = e.key;
+    if (e.repeat) {
+      return;
+    }
     const noteObj = all.filter((note) => note.key === key.toLowerCase())[0];
     if (noteObj.key === key.toLowerCase()) {
       console.log(noteObj.note, noteObj.octave);
