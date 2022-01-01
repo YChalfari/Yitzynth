@@ -15,7 +15,10 @@ const Synth = () => {
   const recorded = useRef([]);
   const synth = new Tone.PolySynth().toDestination();
   const all = notesPlusSharps(defaultNotesToRender, keyCodes);
-  console.log(all, keyCodes);
+
+  // const recordTimeline = useRef(new Tone.Timeline());
+  const currTimeline = useRef(null);
+  const playRecTimeline = useRef(null);
   const currInterval = useRef([0]);
   const startCurrInt = () =>
     setInterval(() => {
@@ -28,6 +31,7 @@ const Synth = () => {
   }, []);
 
   const handleKeyDown = (e) => {
+    console.log(Tone.now());
     const key = e.key;
     if (e.repeat) {
       return;
@@ -80,6 +84,8 @@ const Synth = () => {
               clearInterval(startCurrInt);
               console.log(currInterval.current);
               currInterval.current = 0;
+            } else {
+              console.log("not recording");
             }
 
             setisRecording(!isRecording);
