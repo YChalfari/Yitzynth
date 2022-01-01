@@ -24,7 +24,7 @@ const Synth = () => {
 
   useEffect(() => {
     window.addEventListener("keydown", (e) => handleKeyDown(e));
-    return window.removeEventListener("keydown");
+    return window.removeEventListener("keydown", (e) => handleKeyDown(e));
   }, []);
 
   const handleKeyDown = (e) => {
