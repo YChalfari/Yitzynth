@@ -29,13 +29,6 @@ const Home = () => {
           C# would be "w"
         </p>
       </div>
-      <iframe
-        src="https://www.soundslice.com/slices/WBTMc/embed/"
-        width="100%"
-        height="500"
-        frameBorder="0"
-        allowfullscreen
-      ></iframe>
     </div>
   );
 };

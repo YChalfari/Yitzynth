@@ -14,11 +14,11 @@ const Synth = () => {
   const recording = useRef(isRecording);
   const recorded = useRef([]);
   const synth = new Tone.PolySynth().toDestination();
-  const all = notesPlusSharps(defaultNotesToRender, keyCodes);
+  const allNotes = notesPlusSharps(defaultNotesToRender, keyCodes);
 
   // const recordTimeline = useRef(new Tone.Timeline());
-  const currTimeline = useRef(null);
-  const playRecTimeline = useRef(null);
+  // const currTimeline = useRef(null);
+  // const playRecTimeline = useRef(null);
   const currInterval = useRef([0]);
   const startCurrInt = () =>
     setInterval(() => {
@@ -31,14 +31,15 @@ const Synth = () => {
   }, []);
 
   const handleKeyDown = (e) => {
-    console.log(Tone.now());
     const key = e.key;
     if (e.repeat) {
       return;
     }
-    const noteObj = all.filter((note) => note.key === key.toLowerCase())[0];
+    const noteObj = allNotes.filter(
+      (note) => note.key === key.toLowerCase()
+    )[0];
     if (noteObj.key === key.toLowerCase()) {
-      console.log(noteObj.note, noteObj.octave);
+      // console.log(noteObj.note, noteObj.octave);
       synth.triggerAttackRelease(
         `${noteObj.note}${noteObj.octave}`,
         `${noteObj.timing}n`
@@ -76,7 +77,11 @@ const Synth = () => {
 
   return (
     <div className="synth">
-      <Keyboard notesToRender={defaultNotesToRender} synth={synth} />
+      <Keyboard
+        allNotes={allNotes}
+        notesToRender={defaultNotesToRender}
+        synth={synth}
+      />
       <div className="record-buttons">
         <button
           onClick={() => {

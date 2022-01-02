@@ -22,12 +22,13 @@ const Keyboard = ({ synth, notesToRender }) => {
           {note.hasSharp && i !== notesToRender.length - 1 && (
             <div
               className="black-note"
-              onClick={() =>
+              onClick={(e) => {
+                e.stopPropagation();
                 synth.triggerAttackRelease(
                   `${note.note}#${note.octave}`,
                   `${note.timing}n`
-                )
-              }
+                );
+              }}
             >
               <p>{note.note + "#"}</p>
             </div>
