@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./keyboard.css";
-const Keyboard = ({ synth, notesToRender }) => {
+const Keyboard = ({ synth, notesToRender, allNotes }) => {
   const noteWidth = 100 / notesToRender.length;
   const renderKeys = () => {
     return notesToRender.map((note, i) => (
@@ -18,7 +18,8 @@ const Keyboard = ({ synth, notesToRender }) => {
             width: `${noteWidth}%`,
           }}
         >
-          <p>{note.note}</p>
+          <h4>{note.note}</h4>
+          <p>{note.key}</p>
           {note.hasSharp && i !== notesToRender.length - 1 && (
             <div
               className="black-note"
@@ -30,7 +31,13 @@ const Keyboard = ({ synth, notesToRender }) => {
                 );
               }}
             >
-              <p>{note.note + "#"}</p>
+              <h4>{note.note + "#"}</h4>
+              <p>
+                {
+                  allNotes.find((allnote) => allnote.note === note.note + "#")
+                    .key
+                }
+              </p>
             </div>
           )}
         </div>
