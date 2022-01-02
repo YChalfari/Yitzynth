@@ -1,0 +1,8 @@
+.welcome {
+  margin: 0 auto;
+  position: absolute;
+  background-color: #fff;
+  z-index: 3;
+  height: 80%;
+  width: 80%;
+}

@@ -1,0 +1,28 @@
+.nav-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  height: 10%;
+  width: 100vw;
+}
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #fff;
+  width: 100%;
+  max-width: 1450px;
+  height: 100%;
+}
+.nav a {
+  font-size: 1.2rem;
+  font-weight: 550;
+  color: white;
+}
+.nav a:hover {
+  color: rgb(72, 211, 230);
+}
+.nav img {
+  height: 90%;
+}

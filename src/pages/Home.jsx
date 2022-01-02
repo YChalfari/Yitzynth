@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Welcome from "../components/Welcome";
 import Synth from "../components/Synth";
+import "./home.css";
 const Home = () => {
+  const [firstVisit, setfirstVisit] = useState(true);
+  const handleClick = () => {
+    setfirstVisit(!firstVisit);
+  };
   return (
-    <div>
+    <div className="home">
+      {firstVisit && <Welcome handleClick={handleClick} />}
       <h2>Get Started!</h2>
       <div className="instructions-cont">
         <h4>
@@ -22,7 +29,13 @@ const Home = () => {
           C# would be "w"
         </p>
       </div>
-      <Synth />
+      <iframe
+        src="https://www.soundslice.com/slices/WBTMc/embed/"
+        width="100%"
+        height="500"
+        frameBorder="0"
+        allowfullscreen
+      ></iframe>
     </div>
   );
 };
