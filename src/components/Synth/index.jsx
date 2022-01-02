@@ -13,9 +13,9 @@ const Synth = () => {
   const [isRecording, setisRecording] = useState(false);
   // const notesWithKeyCode = useRef([]);
   const recording = useRef(isRecording);
-  const recorded = useRef([]);
+  let recorded = [];
   const synth = new Tone.PolySynth().toDestination();
-  const allNotes = notesPlusSharps(notesToRender, keyCodes);
+  const allNotes = notesPlusSharps(defaultNotesToRender, keyCodes);
 
   // const recordTimeline = useRef(new Tone.Timeline());
   // const currTimeline = useRef(null);
@@ -28,7 +28,7 @@ const Synth = () => {
 
   useEffect(() => {
     window.addEventListener("keydown", (e) => handleKeyDown(e));
-    return window.removeEventListener("keydown", (e) => handleKeyDown(e));
+    return () => window.removeEventListener("keydown", (e) => handleKeyDown(e));
   }, []);
 
   const handleKeyDown = (e) => {
@@ -36,46 +36,30 @@ const Synth = () => {
     if (e.repeat) {
       return;
     }
-    const noteObj = allNotes.filter(
+    console.log("xxxx", allNotes);
+    const noteObj = [...allNotes].find(
       (note) => note.key === key.toLowerCase()
-    )[0];
+    );
     if (noteObj.key === key.toLowerCase()) {
       synth.triggerAttackRelease(
         `${noteObj.note}${noteObj.octave}`,
         `${noteObj.timing}n`
       );
       if (recording.current) {
-        // noteObj.interval = currInterval.current;
-        // recorded.current.push(noteObj);
-        // setRecordedArr(recorded.current);
-        // clearInterval(startCurrInt);
-        // currInterval.current = 0;
-        // startCurrInt();
-        noteObj.time = Tone.Transport.seconds.toFixed(3);
-        recorded.current.push(noteObj);
-        setRecordedArr(recorded.current);
-        console.log(noteObj.time);
+        const newObj = { ...noteObj };
+        newObj.time = Tone.Transport.seconds.toFixed(3);
+        recorded.push(newObj);
+        setRecordedArr(recorded);
       }
     }
   };
 
   const handlePlayRecording = (arr) => {
+    console.log("arr", arr);
     const now = Tone.now();
-    // let int = 0;
-    // arr.forEach((element) => {
-    //   console.log(now);
-    //   const { note, interval, octave, timing } = element;
-    //   int = interval;
-    //   synth.triggerAttackRelease(
-    //     `${note}${octave}`,
-    //     `${timing}n`,
-    //     `${now + interval}`
-    //   );
-    // });
     Tone.Transport.start();
     arr.forEach((recordedNote) => {
       const { note, octave, timing, time } = recordedNote;
-      console.log(recorded.current);
       synth.triggerAttackRelease(
         `${note}${octave}`,
         `${timing}n`,
@@ -85,6 +69,7 @@ const Synth = () => {
     Tone.Transport.stop();
   };
 
+  const handleRecord = () => {};
   return (
     <div className="synth">
       <Keyboard
@@ -116,13 +101,13 @@ const Synth = () => {
           <>
             <button
               onClick={() => {
-                recorded.current = [];
-                setRecordedArr(recorded.current);
+                recorded = [];
+                setRecordedArr(recorded);
               }}
             >
               Scrap Recording
             </button>
-            <button onClick={() => handlePlayRecording(recorded.current)}>
+            <button onClick={() => handlePlayRecording(recordedArr)}>
               Play Recording
             </button>
           </>
