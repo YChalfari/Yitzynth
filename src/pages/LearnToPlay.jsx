@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 
 const lyrics = "You are my sun shine";
 const lyrics2 = "You are my sun shine";
@@ -8,28 +8,24 @@ const LearnToPlay = () => {
   const word2 = useRef();
   const word3 = useRef();
   const word4 = useRef();
-  const word5 = useRef();
-  const word6 = useRef();
-  const word7 = useRef();
-  const word8 = useRef();
-  const word9 = useRef();
+  // const word5 = useRef();
+  // const word6 = useRef();
+  // const word7 = useRef();
+  // const word8 = useRef();
+  // const word9 = useRef();
   const refsArr = [word0, word1, word2, word3, word4];
-  const refsArr2 = [word5, word6, word7, word8, word9];
+  // const refsArr2 = [word5, word6, word7, word8, word9];
   const lyricArr = (arr) => {
     return arr.split(" ");
   };
 
-  const renderLyrics = (arr, refArr) => {
+  const renderLyrics = (arr) => {
     return arr.map((word, i) => (
       <h4 style={{ fontSize: "2rem" }} ref={refsArr[i]}>{`  ${word}`}</h4>
     ));
   };
 
   useEffect(() => {
-    let timer = 0;
-    setInterval(() => {
-      timer += 100;
-    }, 100);
     refsArr.forEach(async (word, i) => {
       console.dir(word.current);
       await setTimeout(() => {
