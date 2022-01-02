@@ -7,6 +7,7 @@ import {
   keyCodes,
 } from "../../resources/Notes";
 import Keyboard from "../Keyboard";
+import RecordButtons from "../RecordButtons";
 const Synth = () => {
   const [notesToRender, setNotesToRender] = useState(defaultNotesToRender);
   const [recordedArr, setRecordedArr] = useState([]);
@@ -36,7 +37,6 @@ const Synth = () => {
     if (e.repeat) {
       return;
     }
-    console.log("xxxx", allNotes);
     const noteObj = [...allNotes].find(
       (note) => note.key === key.toLowerCase()
     );
@@ -68,8 +68,29 @@ const Synth = () => {
     });
     Tone.Transport.stop();
   };
-
-  const handleRecord = () => {};
+  const handlePlay = () => {
+    handlePlayRecording(recordedArr);
+  };
+  const handleStop = () => {
+    if (recording.current) {
+      Tone.Transport.stop();
+      console.log("rec stopped");
+    }
+    toggleRecording();
+  };
+  const toggleRecording = () => {
+    setisRecording(!isRecording);
+    recording.current = !recording.current;
+  };
+  const handleDelete = () => {
+    recorded = [];
+    setRecordedArr(recorded);
+  };
+  const handleRecord = () => {
+    Tone.Transport.start();
+    console.log("rec started");
+    toggleRecording();
+  };
   return (
     <div className="synth">
       <Keyboard
@@ -77,44 +98,52 @@ const Synth = () => {
         notesToRender={notesToRender}
         synth={synth}
       />
-      <div className="record-buttons">
-        <button
-          onClick={() => {
-            if (recording.current) {
-              Tone.Transport.stop();
-              console.log("rec stopped");
-              // clearInterval(startCurrInt);
-              // console.log(currInterval.current);
-              // currInterval.current = 0;
-            } else {
-              Tone.Transport.start();
-              console.log("rec started");
-            }
 
-            setisRecording(!isRecording);
-            recording.current = !recording.current;
-          }}
-        >
-          {recording.current ? "Stop" : "Record"}
-        </button>
-        {recordedArr.length > 0 && (
-          <>
-            <button
-              onClick={() => {
-                recorded = [];
-                setRecordedArr(recorded);
-              }}
-            >
-              Scrap Recording
-            </button>
-            <button onClick={() => handlePlayRecording(recordedArr)}>
-              Play Recording
-            </button>
-          </>
-        )}
-      </div>
+      <RecordButtons
+        hasRecorded={recordedArr.length > 0}
+        isRecording={isRecording}
+        handleRecord={handleRecord}
+        handlePlay={handlePlay}
+        handleStop={handleStop}
+        handleDelete={handleDelete}
+      />
     </div>
   );
 };
 
 export default Synth;
+{
+  /* <div className="record-buttons">
+<button
+  onClick={() => {
+    if (recording.current) {
+      Tone.Transport.stop();
+      console.log("rec stopped");
+    } else {
+      Tone.Transport.start();
+      console.log("rec started");
+    }
+
+    setisRecording(!isRecording);
+    recording.current = !recording.current;
+  }}
+>
+  {recording.current ? "Stop" : "Record"}
+</button>
+{recordedArr.length > 0 && (
+  <>
+    <button
+      onClick={() => {
+        recorded = [];
+        setRecordedArr(recorded);
+      }}
+    >
+      Scrap Recording
+    </button>
+    <button onClick={() => handlePlayRecording(recordedArr)}>
+      Play Recording
+    </button>
+  </>
+)}
+</div> */
+}

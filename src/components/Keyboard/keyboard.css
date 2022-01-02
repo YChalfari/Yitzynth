@@ -1,9 +1,9 @@
 .keyboard {
   display: flex;
-  margin: 0 auto;
+  margin: 10% auto;
   height: 20vh;
   width: 90%;
-  border: 20px solid rgb(230, 48, 48);
+  border: 10px solid gray;
 }
 .white-note {
   display: flex;
@@ -11,6 +11,7 @@
   justify-content: center;
   position: relative;
   height: 100%;
+  background-color: rgb(255, 244, 229);
   border: 1px solid #333;
 }
 .black-note {
@@ -24,5 +25,6 @@
   width: 65%;
   color: white;
   vertical-align: bottom;
+  z-index: 2;
   background-color: #333;
 }
