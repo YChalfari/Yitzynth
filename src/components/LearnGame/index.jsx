@@ -37,8 +37,13 @@ const LearnGame = ({ selectedSong }) => {
           } else {
             setGameMessage("WHUPS");
           }
+          console.log(currIndex.current);
           //need a way to time the incrementation of currIndx
           currIndex.current++;
+          // setTimeout(() => {
+          //   currIndex.current++;
+          //   console.log(currIndex.current);
+          // }, (selectedSong[currIndex.current + 1].time - 0.569 - Tone.Transport.seconds) * 1000);
         }
       });
     }, 3000);
