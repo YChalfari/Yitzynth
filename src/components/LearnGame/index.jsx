@@ -48,6 +48,7 @@ const LearnGame = ({ selectedSong }) => {
       });
     }, 3000);
   };
+  //Loop through songArr and schedule timeouts to change current index or set whatever is needed
   return (
     <div className="learn-game">
       <h3 className="game-countdown">{countdownTimer && countdownTimer}</h3>
