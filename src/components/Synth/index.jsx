@@ -112,38 +112,3 @@ const Synth = () => {
 };
 
 export default Synth;
-{
-  /* <div className="record-buttons">
-<button
-  onClick={() => {
-    if (recording.current) {
-      Tone.Transport.stop();
-      console.log("rec stopped");
-    } else {
-      Tone.Transport.start();
-      console.log("rec started");
-    }
-
-    setisRecording(!isRecording);
-    recording.current = !recording.current;
-  }}
->
-  {recording.current ? "Stop" : "Record"}
-</button>
-{recordedArr.length > 0 && (
-  <>
-    <button
-      onClick={() => {
-        recorded = [];
-        setRecordedArr(recorded);
-      }}
-    >
-      Scrap Recording
-    </button>
-    <button onClick={() => handlePlayRecording(recordedArr)}>
-      Play Recording
-    </button>
-  </>
-)}
-</div> */
-}
