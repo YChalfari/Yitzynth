@@ -7,6 +7,7 @@ import {
 } from "../../resources/Notes";
 import SelectInput from "../SelectInput";
 import { songList, twinkle } from "../../resources/Songs";
+import LearnGame from "../LearnGame";
 import Button from "../Button";
 import * as Tone from "tone";
 import "./songplayer.css";
@@ -50,8 +51,7 @@ const SongPlayer = ({ handleSelect, selectedSong }) => {
   return (
     <div className="song-player">
       <SelectInput list={songList} handleSelect={handleSelect} />
-      <h3 className="note-display"> C </h3>
-
+      {/* <h3 className="note-display"> C </h3> */}
       <div className="player">
         <h3 className="player-title">
           Play the song you selected and try to learn the timing
@@ -59,13 +59,13 @@ const SongPlayer = ({ handleSelect, selectedSong }) => {
         <Button
           text="Play"
           type="image"
-          icon={"fas fa-play-circle fa-2x"}
+          icon={"fas fa-play-circle fa-3x"}
           color="#4CBB17"
           cbarg={selectedSong}
           onClick={playSong}
         />
-        {/* <button onClick={playSong(selectedSong)}>Start</button> */}
       </div>
+      <LearnGame selectedSong={selectedSong} />
     </div>
   );
 };
