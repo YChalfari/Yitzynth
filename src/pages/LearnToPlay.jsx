@@ -1,44 +1,19 @@
-import React, { useRef, useEffect } from "react";
-import SoundSlice from "../components/SoundSlice";
-const lyrics = "You are my sun shine";
-const lyrics2 = "You are my sun shine";
+import React, { useRef, useEffect, useState } from "react";
+import { songList, twinkle } from "../resources/Songs";
+import * as Tone from "tone";
+import Synth from "../components/Synth";
+import SongPlayer from "../components/SongPlayer";
+
 const LearnToPlay = () => {
-  const word0 = useRef();
-  const word1 = useRef();
-  const word2 = useRef();
-  const word3 = useRef();
-  const word4 = useRef();
-  const refsArr = [word0, word1, word2, word3, word4];
-
-  const lyricArr = (arr) => {
-    return arr.split(" ");
+  const [selectedSong, setSelectedSong] = useState(twinkle);
+  const handleSelect = (value) => {
+    setSelectedSong(songList.find((song) => value === song.title).song);
   };
-
-  const renderLyrics = (arr) => {
-    return arr.map((word, i) => (
-      <h4 style={{ fontSize: "2rem" }} ref={refsArr[i]}>{`  ${word}`}</h4>
-    ));
-  };
-
-  useEffect(() => {
-    refsArr.forEach(async (word, i) => {
-      console.dir(word.current);
-      await setTimeout(() => {
-        word.current.style.color = "white";
-        setTimeout(() => {
-          word.current.style.color = "black";
-        }, 300);
-      }, 200 * i);
-    });
-  }, []);
-
   return (
-    <>
-      <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-        {renderLyrics(lyricArr(lyrics))}
-      </div>
-      <SoundSlice />
-    </>
+    <div>
+      <SongPlayer handleSelect={handleSelect} />
+      <Synth />
+    </div>
   );
 };
 

@@ -8,7 +8,7 @@ const SoundSlice = () => {
       width="80%"
       height="500"
       frameBorder="0"
-      allowfullscreen
+      allowFullScreen
     ></iframe>
   );
 };

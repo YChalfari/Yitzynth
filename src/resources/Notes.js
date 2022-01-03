@@ -89,3 +89,4 @@ export const keyCodes = [
   "j",
   "k",
 ];
+export const defaultAllNotes = notesPlusSharps(defaultNotesToRender, keyCodes);

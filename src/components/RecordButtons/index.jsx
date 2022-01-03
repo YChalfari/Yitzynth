@@ -43,7 +43,7 @@ const RecordButtons = ({
             icon={"fas fa-trash-alt fa-2x"}
             color="#C0C0C0"
             onClick={handleDelete}
-          />{" "}
+          />
         </>
       )}
     </div>

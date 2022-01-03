@@ -1,0 +1,13 @@
+.dropdown-container {
+  margin: 5vmin auto;
+  width: 80%;
+  background-color: orangered;
+}
+.dropdown-container ul {
+  list-style: none;
+}
+.dropdown-item {
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: 1px solid black;
+}
