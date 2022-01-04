@@ -70,7 +70,10 @@ const LearnGame = ({ selectedSong }) => {
           }
           gameResults.current.push(timeMessage);
           //need a way to time the incrementation of currIndx
-          currIndex.current++;
+          if (currIndex.current < selectedSong.length - 1) {
+            currIndex.current++;
+          }
+
           setCurrentIndex(currIndex.current);
 
           // setTimeout(() => {
@@ -82,6 +85,8 @@ const LearnGame = ({ selectedSong }) => {
       setTimeout(() => {
         console.log(gameResults.current);
         setIsPlaying((isPlaying) => !isPlaying);
+        currIndex.current = 0;
+        setCurrentIndex(currIndex.current);
       }, selectedSong[selectedSong.length - 1].time * 1000);
     }, 3000);
   };
@@ -92,12 +97,12 @@ const LearnGame = ({ selectedSong }) => {
       <h3 className="game-countdown">{countdownTimer && countdownTimer}</h3>
       <Button onClick={startGame} type="text" text="Start Game" />
       {isPlaying && (
-        <div className="game-message">{`Note: ${gameMessage} Timing: ${accuracyMessage}`}</div>
-      )}
-      {isPlaying && (
-        <div className="note-display">
-          {selectedSong[currIndex.current].note}
-        </div>
+        <>
+          <div className="note-display">
+            {selectedSong[currIndex.current].note}
+          </div>
+          <div className="game-message">{`Note: ${gameMessage} Timing: ${accuracyMessage}`}</div>
+        </>
       )}
     </div>
   );
