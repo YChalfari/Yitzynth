@@ -10,6 +10,7 @@ const LearnGame = ({ selectedSong }) => {
   const [accuracyMessage, setAccuracyMessage] = useState("");
   const gameResults = useRef([]);
   const [difficulty, setDifficulty] = useState(0.5);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const currIndex = useRef(0);
 
   const calculateTimeAccuracy = (notePressed, songNote, leeway) => {
@@ -70,6 +71,7 @@ const LearnGame = ({ selectedSong }) => {
           gameResults.current.push(timeMessage);
           //need a way to time the incrementation of currIndx
           currIndex.current++;
+          setCurrentIndex(currIndex.current);
 
           // setTimeout(() => {
           //   currIndex.current++;
@@ -86,12 +88,17 @@ const LearnGame = ({ selectedSong }) => {
   //Loop through songArr and schedule timeouts to change current index or set whatever is needed
   return (
     <div className="learn-game">
+      <h3>Now try to play it!! Click start game to ... start</h3>
       <h3 className="game-countdown">{countdownTimer && countdownTimer}</h3>
       <Button onClick={startGame} type="text" text="Start Game" />
       {isPlaying && (
         <div className="game-message">{`Note: ${gameMessage} Timing: ${accuracyMessage}`}</div>
       )}
-      {isPlaying && "We're Playing"}
+      {isPlaying && (
+        <div className="note-display">
+          {selectedSong[currIndex.current].note}
+        </div>
+      )}
     </div>
   );
 };

@@ -10,7 +10,7 @@ const LearnToPlay = () => {
     setSelectedSong(songList.find((song) => value === song.title).song);
   };
   return (
-    <div>
+    <div className="learn-page">
       <SongPlayer selectedSong={selectedSong} handleSelect={handleSelect} />
       <Synth />
     </div>
