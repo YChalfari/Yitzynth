@@ -22,14 +22,16 @@ const SongPlayer = ({ handleSelect, selectedSong }) => {
   const songSynth = new Tone.PolySynth().toDestination();
 
   const playSong = (song) => {
+    const songLength = song[song.length - 1].time;
     Tone.start();
     console.log("song", song);
     const now = Tone.now();
     Tone.Transport.start();
-    // startSongTimer();
-    // setIsSongPlaying((isSongPlaying) => !isSongPlaying);
-    // setCurrNoteIndex(0);
-
+    // startSongTimer();// setCurrNoteIndex(0);
+    setIsSongPlaying((isSongPlaying) => !isSongPlaying);
+    setTimeout(() => {
+      setIsSongPlaying((isSongPlaying) => !isSongPlaying);
+    }, songLength * 1000);
     song.forEach((songNote) => {
       const { note, octave, timing, time } = songNote;
       songSynth.triggerAttackRelease(
@@ -41,17 +43,11 @@ const SongPlayer = ({ handleSelect, selectedSong }) => {
     Tone.Transport.stop();
   };
 
-  const startGame = () => {
-    setTimeout(() => {
-      Tone.start();
-
-      playSong(selectedSong);
-    }, 3000);
-  };
+  const renderNotesDisplay = () => {};
   return (
     <div className="song-player">
       <SelectInput list={songList} handleSelect={handleSelect} />
-      {/* <h3 className="note-display"> C </h3> */}
+      {isSongPlaying && <h3 className="note-display"> C </h3>}
       <div className="player">
         <h3 className="player-title">
           Play the song you selected and try to learn the timing
