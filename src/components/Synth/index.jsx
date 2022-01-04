@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import * as Tone from "tone";
+import { recordSong, playSong } from "../../resources/Helpers";
 import { Time } from "tone";
 import {
   defaultNotesToRender,
@@ -46,30 +47,13 @@ const Synth = () => {
         `${noteObj.timing}n`
       );
       if (recording.current) {
-        const newObj = { ...noteObj };
-        newObj.time = Tone.Transport.seconds.toFixed(3);
-        recorded.push(newObj);
-        setRecordedArr(recorded);
+        recordSong(noteObj, recorded, setRecordedArr);
       }
     }
   };
 
-  const handlePlayRecording = (arr) => {
-    console.log("arr", arr);
-    const now = Tone.now();
-    Tone.Transport.start();
-    arr.forEach((recordedNote) => {
-      const { note, octave, timing, time } = recordedNote;
-      synth.triggerAttackRelease(
-        `${note}${octave}`,
-        `${timing}n`,
-        `${now + (time - Tone.Transport.seconds.toFixed(3))}`
-      );
-    });
-    Tone.Transport.stop();
-  };
   const handlePlay = () => {
-    handlePlayRecording(recordedArr);
+    playSong(recordedArr, synth);
   };
   const handleStop = () => {
     if (recording.current) {
