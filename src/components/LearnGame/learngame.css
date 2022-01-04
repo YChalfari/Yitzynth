@@ -1,7 +1,11 @@
 .learn-game {
   padding: 18px 10px;
-  height: max-content;
+}
+.game-message {
+  margin: 1.5vmin;
+  padding: 10px;
 }
 .note-display {
-  height: max-content;
+  margin: 1.5vmin;
+  padding: 10px;
 }

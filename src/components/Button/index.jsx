@@ -1,11 +1,8 @@
 import React from "react";
 
-const Button = ({ type, text, onClick, icon, color, cbarg }) => {
+const Button = ({ type, text, onClick, icon, color }) => {
   return (
-    <button
-      onClick={() => onClick(cbarg)}
-      className={type === "image" ? "img-btn" : "btn"}
-    >
+    <button onClick={onClick} className={type === "image" ? "img-btn" : "btn"}>
       {type === "image" ? (
         <>
           <i className={icon} style={{ color: `${color}` }}></i>

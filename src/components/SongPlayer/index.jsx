@@ -6,6 +6,7 @@ import {
   keyCodes,
 } from "../../resources/Notes";
 import SelectInput from "../SelectInput";
+import { playSong } from "../../resources/Helpers";
 import { songList, twinkle } from "../../resources/Songs";
 import LearnGame from "../LearnGame";
 import Button from "../Button";
@@ -22,26 +23,12 @@ const SongPlayer = ({ handleSelect, selectedSong }) => {
   const startSongTimer = () => () => setInterval(() => (songTimer += 0.1), 100);
   const songSynth = new Tone.PolySynth().toDestination();
 
-  const playSong = (song) => {
+  const displayNotes = (song, varToToggle, toggleFunc) => {
     const songLength = song[song.length - 1].time;
-    Tone.start();
-    console.log("song", song);
-    const now = Tone.now();
-    Tone.Transport.start();
-    // startSongTimer();// setCurrNoteIndex(0);
-    setIsSongPlaying((isSongPlaying) => !isSongPlaying);
+    toggleFunc((isSongPlaying) => !isSongPlaying);
     setTimeout(() => {
-      setIsSongPlaying((isSongPlaying) => !isSongPlaying);
+      toggleFunc((isSongPlaying) => !isSongPlaying);
     }, songLength * 1000);
-    song.forEach((songNote) => {
-      const { note, octave, timing, time } = songNote;
-      songSynth.triggerAttackRelease(
-        `${note}${octave}`,
-        `${timing}n`,
-        `${now + (time - Tone.Transport.seconds.toFixed(3))}`
-      );
-    });
-    Tone.Transport.stop();
   };
 
   const renderNotesDisplay = (startInd, amount) => {
@@ -72,7 +59,7 @@ const SongPlayer = ({ handleSelect, selectedSong }) => {
           icon={"fas fa-play-circle fa-3x"}
           color="#4CBB17"
           cbarg={selectedSong}
-          onClick={playSong}
+          onClick={() => playSong(selectedSong, songSynth)}
         />
       </div>
       <LearnGame selectedSong={selectedSong} />
