@@ -17,6 +17,7 @@ const SongPlayer = ({ handleSelect, selectedSong }) => {
   const [currNoteIndex, setCurrNoteIndex] = useState(null);
   const [currUserNote, setCurrUserNote] = useState({});
   const [isSongPlaying, setIsSongPlaying] = useState();
+  const [renderStartIndex, setRenderStartIndex] = useState(0);
   let songTimer = 0;
   const startSongTimer = () => () => setInterval(() => (songTimer += 0.1), 100);
   const songSynth = new Tone.PolySynth().toDestination();
@@ -43,11 +44,24 @@ const SongPlayer = ({ handleSelect, selectedSong }) => {
     Tone.Transport.stop();
   };
 
-  const renderNotesDisplay = () => {};
+  const renderNotesDisplay = (startInd, amount) => {
+    const notesToDisplay = selectedSong.slice(startInd, amount);
+    const notesJSX = notesToDisplay.map((note, i) => (
+      <span key={i} className="note-display">
+        {note.note}
+      </span>
+    ));
+    setTimeout(() => {
+      console.log(notesToDisplay);
+      setRenderStartIndex((renderStartIndex) => renderStartIndex + amount - 1);
+    }, notesToDisplay[notesToDisplay.length - 1].time * 1000);
+    return notesJSX;
+  };
+
   return (
     <div className="song-player">
       <SelectInput list={songList} handleSelect={handleSelect} />
-      {isSongPlaying && <h3 className="note-display"> C </h3>}
+      {isSongPlaying && renderNotesDisplay(renderStartIndex, 10)}
       <div className="player">
         <h3 className="player-title">
           Play the song you selected and try to learn the timing
