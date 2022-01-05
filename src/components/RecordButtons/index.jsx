@@ -19,6 +19,9 @@ const RecordButtons = ({
   const onSave = () => {
     setIsSaving((isSaving) => !isSaving);
   };
+  const onCancel = () => {
+    setIsSaving((isSaving) => !isSaving);
+  };
   const onChange = (name, value) => {
     setSongTitle(value);
   };
@@ -92,7 +95,12 @@ const RecordButtons = ({
         {isSaving && (
           <>
             <Input name={"Title"} onChange={onChange} />
-            <button onClick={handleSave}>Save</button>
+            <button className="save-btn" onClick={handleSave}>
+              Save
+            </button>
+            <button className="save-btn" onClick={onCancel}>
+              Cancel
+            </button>
           </>
         )}
       </div>

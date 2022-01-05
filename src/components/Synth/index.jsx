@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import * as Tone from "tone";
 import { recordSong, playSong } from "../../resources/Helpers";
 import { Time } from "tone";
@@ -9,11 +9,13 @@ import {
 } from "../../resources/Notes";
 import Keyboard from "../Keyboard";
 import RecordButtons from "../RecordButtons";
+import { UserContext } from "../../App";
+import SelectInput from "../SelectInput";
 const Synth = () => {
+  const { user, isLoggedIn } = useContext(UserContext);
   const [notesToRender, setNotesToRender] = useState(defaultNotesToRender);
   const [recordedArr, setRecordedArr] = useState([]);
   const [isRecording, setisRecording] = useState(false);
-
   const recording = useRef(isRecording);
   let recorded = [];
   const synth = new Tone.PolySynth().toDestination();
@@ -67,6 +69,9 @@ const Synth = () => {
     console.log("rec started");
     toggleRecording();
   };
+  const handleSelect = (value) => {
+    setRecordedArr(user.songs.find((song) => song.title === value).song);
+  };
   return (
     <div className="synth">
       <Keyboard
@@ -84,6 +89,9 @@ const Synth = () => {
         handleDelete={handleDelete}
         recordedArr={recordedArr}
       />
+      {isLoggedIn && (
+        <SelectInput list={user.songs} handleSelect={handleSelect} />
+      )}
     </div>
   );
 };

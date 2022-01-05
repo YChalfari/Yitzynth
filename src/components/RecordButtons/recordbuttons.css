@@ -25,3 +25,12 @@
   transform: scale(0.9);
   opacity: 0.8;
 }
+
+.save-input {
+  margin: 0 auto;
+  width: 60%;
+}
+.save-btn {
+  margin: 1vmin;
+  padding: 5px;
+}
