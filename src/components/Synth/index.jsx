@@ -28,7 +28,14 @@ const Synth = () => {
     window.addEventListener("keydown", playNotes);
     return () => window.removeEventListener("keydown", playNotes);
   }, []);
-
+  const handleNoteClick = (e, note) => {
+    e.stopPropagation();
+    synth.triggerAttackRelease(`${note.note}${note.octave}`, `${note.timing}n`);
+    if (recording.current) {
+      recordSong(note, recorded, setRecordedArr);
+    }
+    console.log(recorded, recording.current);
+  };
   const handleKeyDown = (e) => {
     const key = e.key;
     if (e.repeat) {
@@ -96,6 +103,7 @@ const Synth = () => {
         allNotes={allNotes}
         notesToRender={notesToRender}
         synth={synth}
+        onClick={handleNoteClick}
       />
 
       <RecordButtons

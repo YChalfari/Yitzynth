@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Welcome from "../components/Welcome";
+
 import Synth from "../components/Synth";
 import "./home.css";
 const Home = () => {
@@ -9,7 +9,7 @@ const Home = () => {
   };
   return (
     <div className="home">
-      {firstVisit && <Welcome handleClick={handleClick} />}
+      {/* {firstVisit && <Welcome handleClick={handleClick} />} */}
       <h2>Get Started!</h2>
       <div className="instructions-cont">
         <h4>

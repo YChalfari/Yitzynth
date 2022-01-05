@@ -1,10 +1,10 @@
 import React from "react";
-import { Button } from "@material-ui/core";
+// import { Button } from "@material-ui/core";
 import "./welcome.css";
 const Welcome = ({ handleClick }) => {
   return (
     <div className="welcome">
-      <div className="welcome-text">
+      {/* <div className="welcome-text">
         <h4>Welcome! </h4>
         Under Construction
       </div>
@@ -19,7 +19,7 @@ const Welcome = ({ handleClick }) => {
         <Button variant="contained" color="primary">
           Log-in
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };

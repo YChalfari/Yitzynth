@@ -16,13 +16,21 @@
   height: 100%;
 }
 .nav a {
-  font-size: 1.2rem;
+  font-size: 3vmin;
   font-weight: 550;
   color: white;
+}
+.nav a:last-child {
+  margin-right: 2vmin;
 }
 .nav a:hover {
   color: rgb(72, 211, 230);
 }
 .nav img {
   height: 90%;
+}
+@media (min-width: 625px) {
+  .nav a {
+    font-size: 1.4rem;
+  }
 }

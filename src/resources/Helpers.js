@@ -1,8 +1,10 @@
 import * as Tone from "tone";
 import users from "../apis/users";
+
 export const recordSong = (noteObj, arr, stateFunc) => {
   const newObj = { ...noteObj };
   newObj.time = Tone.Transport.seconds.toFixed(3);
+  console.log(newObj, arr);
   arr.push(newObj);
   stateFunc(arr);
 };

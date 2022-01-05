@@ -13,7 +13,7 @@ const NavBar = () => {
         <Link to="/">Home</Link>
         <Link to="/l2p">Learn</Link>
         <Link to="/freestyle">Freestyle</Link>
-        <Link to="/youtube">Youtube Playalong</Link>
+        <Link to="/youtube">Youtube</Link>
         {value.isLoggedIn ? (
           <Link
             onClick={() => {
