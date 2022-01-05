@@ -3,6 +3,7 @@ import * as Tone from "tone";
 import Button from "../Button";
 import { defaultAllNotes } from "../../resources/Notes";
 import mozart from "../../images/moz-good-job.png";
+import { songStartTime } from "../../resources/Helpers";
 import "./learngame.css";
 const LearnGame = ({ selectedSong }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -33,7 +34,7 @@ const LearnGame = ({ selectedSong }) => {
     }
     return accuracy;
   };
-  const songStartTimeReset = () => {};
+
   const startGame = () => {
     setCountdownTimer(3);
     const countdown = setInterval(() => {
@@ -53,7 +54,7 @@ const LearnGame = ({ selectedSong }) => {
           const newObj = { ...noteObj };
           const songNote = selectedSong[currIndex.current];
           // const songTime = selectedSong[currIndex.current].time - 0.969;
-          songNote.time = songNote.time - 0.969;
+          songNote.time = songNote.time - songStartTime(selectedSong);
           newObj.time = Tone.Transport.seconds.toFixed(3);
           console.log(songNote.note, songNote.time, newObj.note, newObj.time);
           const timeMessage = calculateTimeAccuracy(

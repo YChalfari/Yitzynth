@@ -9,7 +9,6 @@ export const recordSong = (noteObj, arr, stateFunc) => {
 };
 
 export const playSong = (song, synth) => {
-  console.log(song);
   Tone.start();
   const now = Tone.now();
   Tone.Transport.start();
@@ -27,4 +26,7 @@ export const playSong = (song, synth) => {
 
 export const toggleState = (func, state) => {
   func((state) => !state);
+};
+export const songStartTime = (song) => {
+  return song[0].time;
 };
