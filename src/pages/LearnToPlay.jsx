@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
 import { songList } from "../resources/Songs";
-import * as Tone from "tone";
 import Synth from "../components/Synth";
 import SongPlayer from "../components/SongPlayer";
 

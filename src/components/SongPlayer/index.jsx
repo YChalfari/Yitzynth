@@ -19,9 +19,10 @@ const SongPlayer = ({ handleSelect, selectedSong }) => {
   const [currUserNote, setCurrUserNote] = useState({});
   const [isSongPlaying, setIsSongPlaying] = useState();
   const [renderStartIndex, setRenderStartIndex] = useState(0);
+  const songSynth = new Tone.PolySynth().toDestination();
+
   let songTimer = 0;
   const startSongTimer = () => () => setInterval(() => (songTimer += 0.1), 100);
-  const songSynth = new Tone.PolySynth().toDestination();
 
   const displayNotes = (song, varToToggle, toggleFunc) => {
     const songLength = song[song.length - 1].time;

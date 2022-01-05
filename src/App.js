@@ -75,33 +75,3 @@ function App() {
 }
 
 export default App;
-// const handleLogin = (userInfo) => {
-//   const currUser = allUsers.find(
-//     (user) =>
-//       user.username === userInfo.username &&
-//       user.password === userInfo.password
-//   );
-//   if (currUser) {
-//     setUser(currUser);
-//     toggleState(setIsLoggedIn, isLoggedIn);
-//   } else {
-//     setLoginError(
-//       "Sorry, username or password is incorrect. If you don't have an account click Register below"
-//     );
-//   }
-// };
-// const handleRegister = (userInfo) => {
-//   const addUser = async () => {
-//     setIsLoading(true);
-//     try {
-//       const res = await users.post("", userInfo);
-//       console.log(res);
-//       setUser(userInfo);
-//       toggleState(setIsLoggedIn, isLoggedIn);
-//     } catch (e) {
-//       setErrorMessage("Oops, something went wrong");
-//     }
-//     setIsLoading(false);
-//   };
-//   addUser();
-// };
