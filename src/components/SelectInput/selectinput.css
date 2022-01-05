@@ -1,5 +1,5 @@
 .dropdown-container {
-  margin: 5vmin auto;
+  margin: 5vmin auto 10px auto;
   width: 80%;
   background-color: orangered;
 }

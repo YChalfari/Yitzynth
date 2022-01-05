@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./selectinput.css";
-const SelectInput = ({ list, handleSelect }) => {
+const SelectInput = ({ list, handleSelect, text }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("Pick a song to learn");
+  const [selected, setSelected] = useState(text);
 
   const handleListClick = (e) => {
     const value = e.currentTarget.innerText;

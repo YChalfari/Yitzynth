@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import * as Tone from "tone";
+import users from "../../apis/users";
 import { recordSong, playSong } from "../../resources/Helpers";
 import { Time } from "tone";
 import {
@@ -12,10 +13,11 @@ import RecordButtons from "../RecordButtons";
 import { UserContext } from "../../App";
 import SelectInput from "../SelectInput";
 const Synth = () => {
-  const { user, isLoggedIn } = useContext(UserContext);
+  const { user, isLoggedIn, setUser } = useContext(UserContext);
   const [notesToRender, setNotesToRender] = useState(defaultNotesToRender);
   const [recordedArr, setRecordedArr] = useState([]);
   const [isRecording, setisRecording] = useState(false);
+  const [selectedSong, setSelectedSong] = useState(null);
   const recording = useRef(isRecording);
   let recorded = [];
   const synth = new Tone.PolySynth().toDestination();
@@ -71,6 +73,22 @@ const Synth = () => {
   };
   const handleSelect = (value) => {
     setRecordedArr(user.songs.find((song) => song.title === value).song);
+    setSelectedSong(value);
+  };
+  const handleDeleteSong = async () => {
+    const updatedSongs = user.songs.filter(
+      (song) => song.title !== selectedSong
+    );
+    const updatedUser = { ...user };
+    updatedUser.songs = updatedSongs;
+    try {
+      const res = await users.put(`/${user.id}`, updatedUser);
+      setUser(updatedUser);
+      setRecordedArr([]);
+      setSelectedSong(null);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
   return (
     <div className="synth">
@@ -90,7 +108,14 @@ const Synth = () => {
         recordedArr={recordedArr}
       />
       {isLoggedIn && (
-        <SelectInput list={user.songs} handleSelect={handleSelect} />
+        <>
+          <SelectInput
+            list={user.songs}
+            handleSelect={handleSelect}
+            text="Select one of your songs to play"
+          />
+          <button onClick={handleDeleteSong}>Delete Selected Song</button>
+        </>
       )}
     </div>
   );

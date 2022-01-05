@@ -47,7 +47,11 @@ const SongPlayer = ({ handleSelect, selectedSong }) => {
 
   return (
     <div className="song-player">
-      <SelectInput list={songList} handleSelect={handleSelect} />
+      <SelectInput
+        list={songList}
+        handleSelect={handleSelect}
+        text="Pick a song to learn"
+      />
       {isSongPlaying && renderNotesDisplay(renderStartIndex, 10)}
       <div className="player">
         <h3 className="player-title">

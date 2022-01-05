@@ -6,7 +6,6 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import LearnToPlay from "./pages/LearnToPlay";
 import Loading from "./components/Loading";
-import { toggleState } from "./resources/Helpers";
 import YoutubePlayground from "./pages/YoutubePlayground";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import users from "./apis/users";
