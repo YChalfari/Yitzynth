@@ -2,7 +2,11 @@
   padding: 18px 10px;
 }
 .game-message {
-  margin: 1.5vmin;
+  display: flex;
+  gap: 15vmin;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5vmin auto;
   padding: 10px;
 }
 .note-display {
@@ -12,6 +16,10 @@
 .game-mozart {
   height: 30vmin;
   animation: 0.8s ease-out 0s 1 slideInFromLeft;
+}
+.accuracy-message {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 @keyframes slideInFromLeft {

@@ -24,7 +24,7 @@ const LearnGame = ({ selectedSong }) => {
         accuracy.slow = true;
         break;
       case notePressed.time < songNote.time - leeway:
-        console.log(notePressed.time, songNote.time);
+        // console.log(notePressed.time, songNote.time);
         accuracy.time = "Too Soon";
         accuracy.soon = true;
         break;
@@ -36,6 +36,7 @@ const LearnGame = ({ selectedSong }) => {
   };
 
   const startGame = () => {
+    console.log(songStartTime(selectedSong), selectedSong[0].time);
     setCountdownTimer(3);
     const countdown = setInterval(() => {
       setCountdownTimer((countdownTimer) => countdownTimer - 1);
@@ -90,6 +91,9 @@ const LearnGame = ({ selectedSong }) => {
         setIsPlaying((isPlaying) => !isPlaying);
         currIndex.current = 0;
         setCurrentIndex(currIndex.current);
+        setGameMessage("");
+        setAccuracyMessage("");
+        Tone.Transport.stop();
         showMozart();
       }, selectedSong[selectedSong.length - 1].time * 1000);
     }, 3000);
@@ -118,7 +122,10 @@ const LearnGame = ({ selectedSong }) => {
           <div className="note-display">
             {selectedSong[currIndex.current].note}
           </div>
-          <div className="game-message">{`Note: ${gameMessage} Timing: ${accuracyMessage}`}</div>
+          <div className="game-message">
+            <span className="accuracy-message"> {gameMessage}</span>{" "}
+            <span className="accuracy-message"> {accuracyMessage}</span>
+          </div>
         </>
       )}
       <div className="mozart-cont">

@@ -9,6 +9,7 @@ export const recordSong = (noteObj, arr, stateFunc) => {
 };
 
 export const playSong = (song, synth) => {
+  console.log(song);
   Tone.start();
   const now = Tone.now();
   Tone.Transport.start();
