@@ -4,6 +4,7 @@
   text-align: center;
 }
 .main {
+  height: 90%;
   margin: 0 auto;
   max-width: 1450px;
 }

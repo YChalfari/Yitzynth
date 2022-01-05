@@ -13,20 +13,11 @@ const Synth = () => {
   const [notesToRender, setNotesToRender] = useState(defaultNotesToRender);
   const [recordedArr, setRecordedArr] = useState([]);
   const [isRecording, setisRecording] = useState(false);
-  // const notesWithKeyCode = useRef([]);
+
   const recording = useRef(isRecording);
   let recorded = [];
   const synth = new Tone.PolySynth().toDestination();
   const allNotes = notesPlusSharps(defaultNotesToRender, keyCodes);
-
-  // const recordTimeline = useRef(new Tone.Timeline());
-  // const currTimeline = useRef(null);
-  // const playRecTimeline = useRef(null);
-  // const currInterval = useRef([0]);
-  // const startCurrInt = () =>
-  //   setInterval(() => {
-  //     currInterval.current += 0.05;
-  //   }, 50);
 
   useEffect(() => {
     window.addEventListener("keydown", (e) => handleKeyDown(e));

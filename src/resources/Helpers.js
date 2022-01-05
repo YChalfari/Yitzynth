@@ -1,4 +1,5 @@
 import * as Tone from "tone";
+import users from "../apis/users";
 export const recordSong = (noteObj, arr, stateFunc) => {
   const newObj = { ...noteObj };
   newObj.time = Tone.Transport.seconds.toFixed(3);
@@ -20,4 +21,8 @@ export const playSong = (song, synth) => {
     );
   });
   Tone.Transport.stop();
+};
+
+export const toggleState = (func, state) => {
+  func((state) => !state);
 };
