@@ -6,6 +6,7 @@ const Welcome = ({ handleClick }) => {
     <div className="welcome">
       <div className="welcome-text">
         <h4>Welcome! </h4>
+        Under Construction
       </div>
       <div className="welcome-buttons">
         <Button
