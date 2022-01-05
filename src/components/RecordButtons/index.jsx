@@ -42,13 +42,13 @@ const RecordButtons = ({
       console.log(error.message);
     }
   };
-  console.log(user);
+
   return (
     <>
       <div className="rec-btn-cont">
         {!isRecording ? (
           <Button
-            icon={"fas fa-circle fa-2x"}
+            icon={"fas fa-circle fa-3x"}
             onClick={handleRecord}
             type="image"
             text="Record"
@@ -56,7 +56,7 @@ const RecordButtons = ({
           />
         ) : (
           <Button
-            icon={"fas fa-stop-circle fa-2x"}
+            icon={"fas fa-stop-circle fa-3x"}
             onClick={handleStop}
             type="image"
             text="Stop"
@@ -68,14 +68,14 @@ const RecordButtons = ({
             <Button
               text="Play"
               type="image"
-              icon={"fas fa-play-circle fa-2x"}
+              icon={"fas fa-play-circle fa-3x"}
               color="#4CBB17"
               onClick={handlePlay}
             />
             <Button
               text="Scrap"
               type="image"
-              icon={"fas fa-trash-alt fa-2x"}
+              icon={"fas fa-trash-alt fa-3x"}
               color="#C0C0C0"
               onClick={handleDelete}
             />

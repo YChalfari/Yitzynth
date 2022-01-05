@@ -11,11 +11,18 @@ const SelectInput = ({ list, handleSelect, text }) => {
     handleSelect(value);
   };
   const renderOptions = () => {
-    return list.map((song) => (
-      <li key={song.title} className="dropdown-item" onClick={handleListClick}>
-        {song.title}
-      </li>
-    ));
+    return (
+      list &&
+      list.map((song) => (
+        <li
+          key={song.title}
+          className="dropdown-item"
+          onClick={handleListClick}
+        >
+          {song.title}
+        </li>
+      ))
+    );
   };
   return (
     <div className="dropdown-container">

@@ -8,3 +8,18 @@
   margin: 0 auto;
   max-width: 1450px;
 }
+.bg-primary {
+  background-color: #feecef;
+}
+.bg-secondary {
+  background-color: #404141;
+}
+.bg-third {
+  background-color: #1dddaf;
+}
+.color-primary {
+  color: #feecef;
+}
+.color-secondary {
+  color: #1dddaf;
+}

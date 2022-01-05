@@ -1,9 +1,9 @@
 .keyboard {
   display: flex;
-  margin: 10% auto 5px auto;
+  margin: 0 auto;
   height: 20vh;
   width: 90%;
-  border: 10px solid gray;
+  border-top: 3px solid #f2a7af;
   max-width: 900px;
 }
 .white-note {

@@ -1,0 +1,12 @@
+.freestyle-moz {
+  height: 35vmin;
+  min-height: 160px;
+}
+.freestyle-page {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5vmin;
+  align-items: center;
+}

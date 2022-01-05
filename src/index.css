@@ -5,10 +5,12 @@
 }
 #root {
   height: 100%;
-  background: radial-gradient(#9df0e7, #0990ac);
 }
 body {
   height: 100vh;
+  color: #fff;
+  background-color: rgb(38, 34, 34);
+  /* background: radial-gradient(#9df0e7, #0990ac); */
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",

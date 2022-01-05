@@ -9,7 +9,8 @@
   background-color: #f4f4f4;
   border-radius: 15px;
   gap: 2vmin;
-  max-width: 675px;
+  max-width: 625px;
+  color: black;
 }
 
 .error-message {

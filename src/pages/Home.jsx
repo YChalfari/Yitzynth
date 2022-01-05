@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-
+import * as Tone from "tone";
+import intro from "../sounds/sfx-piano-bar2.mp3";
+import mozart from "../images/mozart-intro.png";
+import me from "../images/me-bubble-cropped.png";
+import welcomeImg from "../images/welcome-message.png";
 import Synth from "../components/Synth";
 import "./home.css";
 const Home = () => {
@@ -7,11 +11,21 @@ const Home = () => {
   const handleClick = () => {
     setfirstVisit(!firstVisit);
   };
+  useEffect(() => {
+    Tone.start();
+    const player = new Tone.Player(intro).toDestination();
+    player.autostart = true;
+  }, []);
   return (
     <div className="home">
+      <div className="welcome-message">
+        <img className="welcome-me" src={me} alt="" />
+        <img className="welcome-text" src={welcomeImg} alt="" />
+      </div>
       {/* {firstVisit && <Welcome handleClick={handleClick} />} */}
-      <h2>Get Started!</h2>
-      <div className="instructions-cont">
+      <img className="welcome-mozart" src={mozart} alt="" />
+      <div className="instructions-cont bg-secondary color-primary">
+        <p className="color-secondary welcome-header"> Instructions</p>
         <h4>
           To get started, we recommend using your keyboard to play the keys.
         </h4>

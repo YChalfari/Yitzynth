@@ -12,6 +12,7 @@ import LearnGame from "../LearnGame";
 import Button from "../Button";
 import * as Tone from "tone";
 import "./songplayer.css";
+import mozart from "../../images/moz-good-job.png";
 
 const SongPlayer = ({ handleSelect, selectedSong }) => {
   const [currSongNote, setCurrSongNote] = useState(null);
@@ -48,11 +49,13 @@ const SongPlayer = ({ handleSelect, selectedSong }) => {
 
   return (
     <div className="song-player">
-      <SelectInput
-        list={songList}
-        handleSelect={handleSelect}
-        text="Pick a song to learn"
-      />
+      <div className="dropdown-wrap">
+        <SelectInput
+          list={songList}
+          handleSelect={handleSelect}
+          text="Pick a song to learn"
+        />
+      </div>
       {isSongPlaying && renderNotesDisplay(renderStartIndex, 10)}
       <div className="player">
         <h3 className="player-title">

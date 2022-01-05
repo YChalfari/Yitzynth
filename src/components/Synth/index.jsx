@@ -12,6 +12,8 @@ import Keyboard from "../Keyboard";
 import RecordButtons from "../RecordButtons";
 import { UserContext } from "../../App";
 import SelectInput from "../SelectInput";
+import "./synth.css";
+
 const Synth = () => {
   const { user, isLoggedIn, setUser } = useContext(UserContext);
   const [notesToRender, setNotesToRender] = useState(defaultNotesToRender);
@@ -33,8 +35,8 @@ const Synth = () => {
     synth.triggerAttackRelease(`${note.note}${note.octave}`, `${note.timing}n`);
     if (recording.current) {
       recordSong(note, recorded, setRecordedArr);
+      console.log(recorded, recording.current);
     }
-    console.log(recorded, recording.current);
   };
   const handleKeyDown = (e) => {
     const key = e.key;

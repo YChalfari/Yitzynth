@@ -1,10 +1,10 @@
 import React from "react";
-
+import mozart from "../images/moz-yt.png";
 import SearchBar from "../components/Youtube/SearchBar";
 import VideoList from "../components/Youtube/VideoList";
 import VideoFeature from "../components/Youtube/VideoFeature";
 import youtube from "../apis/youtube";
-
+import "./youtubeplayground.css";
 class YoutubePlayground extends React.Component {
   state = { videos: [], selectedVideo: null };
 
@@ -21,6 +21,7 @@ class YoutubePlayground extends React.Component {
   render() {
     return (
       <div className="youtube-page">
+        <img className="youtube-moz" src={mozart} alt="" />
         <div className="ui container">
           <SearchBar onTermSubmit={this.onTermSubmit} />
           <div className="ui grid">

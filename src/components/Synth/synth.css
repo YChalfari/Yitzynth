@@ -1,0 +1,13 @@
+.synth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 800px;
+  padding-top: 56px;
+  margin: 3vmin auto;
+  border-radius: 15px;
+
+  background-color: #333;
+}

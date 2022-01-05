@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
 import Button from "../Button";
 import { defaultAllNotes } from "../../resources/Notes";
+import mozart from "../../images/moz-good-job.png";
 import "./learngame.css";
 const LearnGame = ({ selectedSong }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -11,6 +12,7 @@ const LearnGame = ({ selectedSong }) => {
   const gameResults = useRef([]);
   const [difficulty, setDifficulty] = useState(0.5);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMozart, setIsMozart] = useState(false);
   const currIndex = useRef(0);
 
   const calculateTimeAccuracy = (notePressed, songNote, leeway) => {
@@ -31,7 +33,7 @@ const LearnGame = ({ selectedSong }) => {
     }
     return accuracy;
   };
-
+  const songStartTimeReset = () => {};
   const startGame = () => {
     setCountdownTimer(3);
     const countdown = setInterval(() => {
@@ -87,15 +89,29 @@ const LearnGame = ({ selectedSong }) => {
         setIsPlaying((isPlaying) => !isPlaying);
         currIndex.current = 0;
         setCurrentIndex(currIndex.current);
+        showMozart();
       }, selectedSong[selectedSong.length - 1].time * 1000);
     }, 3000);
   };
+  const showMozart = () => {
+    setIsMozart(true);
+    setTimeout(() => {
+      setIsMozart(false);
+    }, 3000);
+  };
+
   //Loop through songArr and schedule timeouts to change current index or set whatever is needed
   return (
     <div className="learn-game">
       <h3>Now try to play it!! Click start game to ... start</h3>
       <h3 className="game-countdown">{countdownTimer && countdownTimer}</h3>
-      <Button onClick={startGame} type="text" text="Start Game" />
+      <Button
+        onClick={startGame}
+        type="text"
+        text="Start Game"
+        bgColor={"bg-third"}
+        disable={isPlaying ? true : undefined}
+      />
       {isPlaying && (
         <>
           <div className="note-display">
@@ -104,6 +120,15 @@ const LearnGame = ({ selectedSong }) => {
           <div className="game-message">{`Note: ${gameMessage} Timing: ${accuracyMessage}`}</div>
         </>
       )}
+      <div className="mozart-cont">
+        {isMozart && (
+          <img
+            className="game-mozart"
+            src={mozart}
+            alt="Mozart saying nice job"
+          />
+        )}
+      </div>
     </div>
   );
 };
