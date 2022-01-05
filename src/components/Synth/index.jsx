@@ -26,7 +26,6 @@ const Synth = () => {
   }, []);
 
   const handleKeyDown = (e) => {
-    console.log(e.key);
     const key = e.key;
     if (e.repeat) {
       return;
@@ -83,6 +82,7 @@ const Synth = () => {
         handlePlay={handlePlay}
         handleStop={handleStop}
         handleDelete={handleDelete}
+        recordedArr={recordedArr}
       />
     </div>
   );
