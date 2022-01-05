@@ -20,11 +20,13 @@ const Synth = () => {
   const allNotes = notesPlusSharps(defaultNotesToRender, keyCodes);
 
   useEffect(() => {
-    window.addEventListener("keydown", (e) => handleKeyDown(e));
-    return () => window.removeEventListener("keydown", (e) => handleKeyDown(e));
+    const playNotes = (e) => handleKeyDown(e);
+    window.addEventListener("keydown", playNotes);
+    return () => window.removeEventListener("keydown", playNotes);
   }, []);
 
   const handleKeyDown = (e) => {
+    console.log(e.key);
     const key = e.key;
     if (e.repeat) {
       return;

@@ -4,6 +4,7 @@
   height: 20vh;
   width: 90%;
   border: 10px solid gray;
+  max-width: 900px;
 }
 .white-note {
   display: flex;
