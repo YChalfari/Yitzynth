@@ -33,7 +33,7 @@ function App() {
     };
     getUser();
   }, []);
-  console.log(user, isLoggedIn);
+
   return (
     <div className="App">
       <Router>

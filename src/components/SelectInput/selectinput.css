@@ -1,8 +1,9 @@
 .dropdown-container {
   margin: 5vmin auto 10px auto;
-  width: 80%;
+  width: 60%;
   min-width: 200px;
   background-color: #1dddaf;
+  max-width: 230px;
 }
 .dropdown-container ul {
   list-style: none;
