@@ -8,6 +8,21 @@
   padding-top: 56px;
   margin: 3vmin auto;
   border-radius: 15px;
-
+  min-height: 250px;
   background-color: #333;
+}
+
+@media (max-width: 650px) {
+  .synth {
+    width: 100%;
+  }
+  .keyboard {
+    width: 100%;
+  }
+}
+
+@media (max-height: 650px) {
+  .keyboard {
+    height: 100%;
+  }
 }
