@@ -29,7 +29,6 @@ const RecordButtons = ({
   const handleSave = async () => {
     const updatedUser = {
       ...user,
-      // songs: [{ title: "jam", song: recordedArr }],
     };
     updatedUser.songs
       ? updatedUser.songs.push({ title: `${songTitle}`, song: recordedArr })
