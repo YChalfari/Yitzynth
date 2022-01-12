@@ -5,6 +5,7 @@ export const recordSong = (noteObj, arr, stateFunc) => {
   const newObj = { ...noteObj };
   newObj.time = Tone.Transport.seconds.toFixed(3);
   arr.push(newObj);
+  // console.log(arr);
   stateFunc(arr);
 };
 

@@ -24,18 +24,22 @@ const Synth = () => {
   let recorded = [];
   const synth = new Tone.PolySynth().toDestination();
   const allNotes = notesPlusSharps(defaultNotesToRender, keyCodes);
-
+  useEffect(() => {
+    console.log(recordedArr);
+  }, [recordedArr]);
   useEffect(() => {
     const playNotes = (e) => handleKeyDown(e);
     window.addEventListener("keydown", playNotes);
     return () => window.removeEventListener("keydown", playNotes);
   }, []);
   const handleNoteClick = (e, note) => {
+    debugger;
     e.stopPropagation();
+    console.log(recorded);
     synth.triggerAttackRelease(`${note.note}${note.octave}`, `${note.timing}n`);
     if (recording.current) {
       recordSong(note, recorded, setRecordedArr);
-      console.log(recorded, recording.current);
+      // console.log(recorded, recording.current);
     }
   };
   const handleKeyDown = (e) => {
@@ -63,7 +67,7 @@ const Synth = () => {
   const handleStop = () => {
     if (recording.current) {
       Tone.Transport.stop();
-      console.log("rec stopped");
+      console.log(recorded);
     }
     toggleRecording();
   };
@@ -77,7 +81,6 @@ const Synth = () => {
   };
   const handleRecord = () => {
     Tone.Transport.start();
-    console.log("rec started");
     toggleRecording();
   };
   const handleSelect = (value) => {
